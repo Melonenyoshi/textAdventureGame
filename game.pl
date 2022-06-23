@@ -32,7 +32,7 @@ path(physicsroom, w, shallway).
 path(shallway, w, cafeteria).
 path(cafeteria, e, shallway).
 
-path(shallway, s, janitorsCloset).
+path(shallway, s, karpowiczOffice).
 
 path(cafeteria, w, cafeteria_backroom) :- holding(X), member(flashlight, X).
 path(cafeteria_backroom, e, cafeteria).
@@ -87,7 +87,7 @@ w :- go(w).
 /* This rule tells how to move in a given direction. */
 
 go(_) :- steps(15),
-         write("Sunrise is nearing."),
+         write("Sunrise is nearing."), nl, 
          fail.
 
 go(Direction) :-
@@ -238,7 +238,8 @@ describe(storage_room) :- write("You are in the well lit storage room."), nl,
 /* south hallway descriptions */
 
 
-describe(physicsroom) :-  write("You are in the physicsroom."), nl,
+describe(physicsroom) :-  has_functioning_flashlight,
+                          write("You are in the physicsroom."), nl,
                           write("There is a small lamp now without batteries in it on the teachers table."), nl,
                           write("The south hallway is to the west."), nl.
 
@@ -250,19 +251,19 @@ describe(shallway) :- has_functioning_flashlight(),
                           write("You are in the south hallway."), nl,
                           write("To the east is the physicsroom."), nl,
                           write("To the west is the cafeteria."), nl,
-                          write("To the south is the janitors closet."), nl,
+                          write("To the south is Prof. Karpowicz's office."), nl,
                           write("To the north is the auditorium."), nl.
                         
 describe(shallway) :-     write("You are in the south hallway."), nl,
                           write("To the east is the physicsroom, there is some light coming out of it."), nl,
                           write("To the west is the cafeteria."), nl,
-                          write("To the south is the janitors closet."), nl,
+                          write("To the south is Prof. Karpowicz's office."), nl,
                           write("To the north is the auditorium."), nl.
 
- describe(janitorsCloset) :- write("You are in the janitor's closet."), nl,
+ describe(karpowiczOffice) :- write("You are in Prof. Karpowicz's office."), nl,
                                  write("The door closes behind you."), nl,
                                  write("You try your best to get out but to no avail."), nl,
-                                 write("The janitor catches you in the morning and reports you to the principal."), nl,
+                                 write("Prof. Karpowicz catches you in the morning and reports you to the principal."), nl,
                                  write("You fail."), nl,
                                  die.
 

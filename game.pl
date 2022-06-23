@@ -34,7 +34,7 @@ path(cafeteria, e, shallway).
 
 path(shallway, s, karpowiczOffice).
 
-path(cafeteria, w, cafeteria_backroom) :- holding(X), member(flashlight, X).
+path(cafeteria, w, cafeteria_backroom) :- has_functioning_flashlight.
 path(cafeteria_backroom, e, cafeteria).
 
 /*south hallway path end */
@@ -212,13 +212,7 @@ intro :- write("You wake up in a dark classroom in HTL Leonding at night."), nl,
 /* north hallway descriptions */
 
 describe(classRoom) :- write("You are in your classroom"), nl,
-                       write("To the west is the north hallway."), nl.
-
-describe(nhallway) :- has_flashlight, write("You are in the north hallway."), nl,
-                       write("To the north is the head of department's office."), nl,
-                       write("To the south is the auditorium."), nl,
-                       write("There seems to be a storage room to the west."), nl,
-                       write("Your classroom is to the east."), nl.                       
+                       write("To the west is the north hallway."), nl.                      
 
 describe(nhallway) :-  write("You are in the north hallway."), nl,
                        write("To the north is the head of department's office."), nl,
